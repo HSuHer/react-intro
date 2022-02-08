@@ -9,9 +9,9 @@ import './App.css'
 
 //import './App.css';
 const todos=[
-  {text:'Cortar cebolla', completed:false},
-  {text:'Tormar el curso de introductorio a React.JS', completed:false},
-  {text:'Llorar con la llorona', completed:false}
+  {text:'Empezar el curso de introductorio a React.JS', completed:true},
+  {text:'Terminar el curso', completed:false},
+  {text:'Integrarlo con Laravel', completed:false}
 ];
 function App() {
   return (
@@ -22,7 +22,11 @@ function App() {
         <TodoSearch />
         <TodoList>
           {todos.map(todo =>(
-            <TodoItem key={todo.text} text={todo.text} />
+            <TodoItem 
+              key={todo.text} 
+              text={todo.text} 
+              completed={todo.completed}
+            />
           ))}
         </TodoList>
         <CreateTodoButton /> 
