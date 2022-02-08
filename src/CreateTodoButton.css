@@ -1,0 +1,18 @@
+.button{
+    padding: 10px;
+    color: white;
+    background-color: rgb(28, 81, 97); ;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.button p{
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.buttonAddTask{
+    position: absolute;
+    bottom: 30px;
+}

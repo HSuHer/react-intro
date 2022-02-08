@@ -1,0 +1,12 @@
+.listContainer{
+    display: inline-block;
+    width: 100%;
+}
+.listTaskDetail{
+    list-style-type: none;
+    padding: 0px;
+    margin: 16px;
+    /* background-color: rgb(216, 232, 247); */
+    padding: 16px;
+    border-radius: 5px;
+}
