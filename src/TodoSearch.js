@@ -1,12 +1,10 @@
 import react, { useState } from "react";
 import './TodoSearch.css'
+import PropTypes from 'prop-types';
 
-function TodoSearch(){
-
-    const [searchValue,setSearchValue]=useState("");
+function TodoSearch({searchValue,setSearchValue}){
 
     const onSearchValueChange = (event) =>{
-        console.log()
         setSearchValue(event.target.value);
     }
 
@@ -23,6 +21,12 @@ function TodoSearch(){
             <p>{searchValue}</p>
         </>
     );
+}
+
+//Obligatorio la recepcion de propiedade al invocar el componente
+TodoSearch.propTypes = {
+    searchValue: PropTypes.string,
+    setSearchValue: PropTypes.func.isRequired,
 }
 
 export {TodoSearch};
