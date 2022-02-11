@@ -1,13 +1,7 @@
 import react, { useState } from "react";
-import {TodoTitle} from './TodoTitle';
-import { TodoCounter } from "./TodoCounter";
-import { TodoSearch } from "./TodoSearch.js";
-import { TodoList } from "./TodoList.js";
-import { TodoItem } from "./TodoItem.js";
-import {CreateTodoButton} from './CreateTodoButton';
 import './App.css'
+import { AppUI } from "./AppUI";
 
-//import './App.css';
 const defaultTodos=[
   {text:'Empezar el curso de introductorio a React.JS', completed:true},
   {text:'Terminar el curso', completed:false},
@@ -38,6 +32,7 @@ function App() {
     });
   }
 
+  //Funcion que completa la TODO seleccionada
   const completeTodo = (text) => {
     const todoIndex= todos.findIndex(todo => todo.text===text);
     const newTodos=[...todos];
@@ -45,39 +40,25 @@ function App() {
     setTodos(newTodos);
   };
 
+  //Funcion que elimina la TODO seleccionada
   const deleteTodo = (text) => {
     const todoIndex= todos.findIndex(todo => todo.text===text);
     const newTodos=[...todos];
     newTodos.splice(todoIndex,1);
     setTodos(newTodos);
-    console.log("Excetute");
   };
 
   return (
    <>
-      <div className="taskContiner">
-        <TodoTitle />
-        <TodoCounter
-          totalTodos={totalTodos}
-          completedTodos={completedTodos}
-        />    
-        <TodoSearch 
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-        />
-        <TodoList>
-          {searchedTodos.map(todo =>(
-            <TodoItem 
-              key={todo.text} 
-              text={todo.text} 
-              completed={todo.completed}
-              onComplete={()=>completeTodo(todo.text)}
-              onDelete={()=>deleteTodo(todo.text)}
-            />
-          ))}
-        </TodoList>
-        <CreateTodoButton /> 
-      </div>
+      <AppUI
+        totalTodos={totalTodos}
+        completedTodos={completedTodos}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        searchedTodos={searchedTodos}
+        completeTodo={completeTodo}
+        deleteTodo={deleteTodo}
+      />
    </>
   );
 }
