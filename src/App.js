@@ -10,7 +10,7 @@ import './App.css'
 //import './App.css';
 const defaultTodos=[
   {text:'Empezar el curso de introductorio a React.JS', completed:true},
-  {text:'Terminar el curso', completed:true},
+  {text:'Terminar el curso', completed:false},
   {text:'Integrarlo con Laravel', completed:false}
 ];
 
@@ -38,6 +38,21 @@ function App() {
     });
   }
 
+  const completeTodo = (text) => {
+    const todoIndex= todos.findIndex(todo => todo.text===text);
+    const newTodos=[...todos];
+    newTodos[todoIndex].completed=true;
+    setTodos(newTodos);
+  };
+
+  const deleteTodo = (text) => {
+    const todoIndex= todos.findIndex(todo => todo.text===text);
+    const newTodos=[...todos];
+    newTodos.splice(todoIndex,1);
+    setTodos(newTodos);
+    console.log("Excetute");
+  };
+
   return (
    <>
       <div className="taskContiner">
@@ -56,6 +71,8 @@ function App() {
               key={todo.text} 
               text={todo.text} 
               completed={todo.completed}
+              onComplete={()=>completeTodo(todo.text)}
+              onDelete={()=>deleteTodo(todo.text)}
             />
           ))}
         </TodoList>
