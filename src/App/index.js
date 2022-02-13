@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react, { useEffect, useState } from "react";
 import { useLocalStorage } from "../customHooks/useLocalStorage";
 import './App.css'
 import { AppUI } from "./AppUI";
@@ -10,10 +10,13 @@ import { AppUI } from "./AppUI";
 ]; */
 
 function App() {
-
-
   //Invocamos nuestro Custom Hook
-  const [item,saveItem] = useLocalStorage('TODOS_V1',[]);
+  const {
+    item: item,
+    saveItem: saveItem,
+    loading,
+    error,
+  } = useLocalStorage('TODOS_V1',[]);
   
   const [searchValue,setSearchValue] = useState("");
 
@@ -54,6 +57,8 @@ function App() {
   return (
    <>
       <AppUI
+        loading={loading}
+        error={error}
         totalTodos={totalTodos}
         completedTodos={completedTodos}
         searchValue={searchValue}
