@@ -6,15 +6,17 @@ import { TodoList } from "../TodoList";
 import { TodoItem } from "../TodoItem";
 import {CreateTodoButton} from '../CreateTodoButton';
 import { TodoContext } from '../TodoContext';
+import { Modal } from '../Modal';
 
 function AppUI(){
-
     const {
         loading,
         error,
         searchedTodos,
         completeTodo,
         deleteTodo,
+        openModal,
+        setOpenModal,
     }=useContext(TodoContext);
     return (
         <>
@@ -25,7 +27,7 @@ function AppUI(){
                 <TodoList>
                     {loading && <p>Estamos cargando, no desesperes...</p>}
                     {error && <p>Desesperate, hubo un error</p>}
-                    {(!loading && !searchedTodos.length) && <p>¡Crea ty primero TODO!</p>}
+                    {(!loading && !searchedTodos.length) && <p>¡Crea tu primer TODO!</p>}
                     {searchedTodos.map(todo =>(
                         <TodoItem 
                         key={todo.text} 
@@ -36,7 +38,10 @@ function AppUI(){
                         />
                     ))}
                 </TodoList>
-                <CreateTodoButton /> 
+                {!!openModal &&(
+                    <Modal />
+                )}
+                <CreateTodoButton setOpenModal={setOpenModal}/> 
             </div>
         </>
     );

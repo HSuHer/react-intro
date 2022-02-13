@@ -1,0 +1,72 @@
+.formContainer{
+    background-color: #ccc;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.formContainer form{
+    display: flex;
+    flex-direction: column;
+}
+.formContainer form label{
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.formContainer textarea{
+    height: 100px;
+    margin-bottom: 20px;
+    resize: none;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.formContainer textarea:focus{
+    border: 3px solid rgb(87, 157, 179);
+    font-size: 16px;
+    outline: none;
+    border-radius: 5px;
+}
+
+.modalButtons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.modalButton{
+    font-weight: bold;
+    font-size: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(87, 157, 179);
+}
+
+.cancelButton{
+    transition: all .5s ease;
+    color: white;
+    background-color: rgb(185, 45, 45);
+    border: 1px solid rgb(185, 45, 45);
+}
+
+.cancelButton:hover{
+    background-color: white;
+    color: rgb(185, 45, 45);
+    border: 1px solid rgb(185, 45, 45);
+}
+
+.addButton{
+    transition: all .5s ease;
+    color: white;
+    border: 1px solid rgb(87, 157, 179);
+}
+
+.addButton:hover{
+    background-color: white;
+    color: rgb(87, 157, 179);
+    border: 1px solid rgb(87, 157, 179);
+}

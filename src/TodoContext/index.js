@@ -15,6 +15,8 @@ function TodoProvider(props){
       
       const [searchValue,setSearchValue] = useState("");
     
+      const [openModal,setOpenModal] = useState(false);
+
       //Proceso que cuenta todos los TODOs y los completados
       const totalTodos=item.length;
       const completedTodos = item.filter((todo)=>!!todo.completed).length;
@@ -32,6 +34,17 @@ function TodoProvider(props){
           return todoText.includes(searchText);
         });
       }
+
+      //Funcion que añade un Todo
+      const addTodo = (text) => {
+        const newTodos=[...item];
+        newTodos.push({
+          completed: false,
+          text: text,
+        })
+        saveItem(newTodos);
+      };
+    
       
       //Funcion que completa la TODO seleccionada
       const completeTodo = (text) => {
@@ -60,6 +73,9 @@ function TodoProvider(props){
             searchedTodos,
             completeTodo,
             deleteTodo,
+            openModal,
+            setOpenModal,
+            addTodo
         }}>
             {props.children}
         </TodoContext.Provider>
