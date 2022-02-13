@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './TodoCounter.css';
 import PropTypes from 'prop-types';
+import { TodoContext } from '../TodoContext';
 
-function TodoCounter({totalTodos,completedTodos}){
+function TodoCounter(){
+
+    const {totalTodos,completedTodos} = useContext(TodoContext);
     
     return (
         <h2 className='TodoCounter'>Has completado {completedTodos} de {totalTodos} TODOs</h2>
     );
 }
 
-TodoCounter.prototype = {
-    totalTodos: PropTypes.number,
-    completedTodos: PropTypes.number,
-}
 
 export {TodoCounter};

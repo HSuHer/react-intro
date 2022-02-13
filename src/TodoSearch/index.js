@@ -1,8 +1,11 @@
-import react, { useState } from "react";
+import react, { useContext, useState } from "react";
 import './TodoSearch.css'
 import PropTypes from 'prop-types';
+import { TodoContext } from "../TodoContext";
 
-function TodoSearch({searchValue,setSearchValue}){
+function TodoSearch(){
+
+    const {searchValue,setSearchValue} = useContext(TodoContext);
 
     const onSearchValueChange = (event) =>{
         setSearchValue(event.target.value);
@@ -21,11 +24,5 @@ function TodoSearch({searchValue,setSearchValue}){
         </>
     );
 }
-
-/* //Obligatorio la recepcion de propiedade al invocar el componente
-TodoSearch.propTypes = {
-    searchValue: PropTypes.string,
-    setSearchValue: PropTypes.func.isRequired,
-} */
 
 export {TodoSearch};
