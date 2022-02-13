@@ -1,4 +1,5 @@
 import react, { useState } from "react";
+import { useLocalStorage } from "../customHooks/useLocalStorage";
 import './App.css'
 import { AppUI } from "./AppUI";
 
@@ -10,58 +11,44 @@ import { AppUI } from "./AppUI";
 
 function App() {
 
-  const localStorageTodos=localStorage.getItem('TODOS_V1');
-  let parsedTodos;
 
-  if(!localStorageTodos){
-    localStorage.setItem('TODOS_V1',JSON.stringify([]));
-    parsedTodos=[];
-  }else{
-    parsedTodos=JSON.parse(localStorageTodos);
-  }
-
-  //Estados de iniciales
-  const [todos,setTodos] = useState(parsedTodos);
+  //Invocamos nuestro Custom Hook
+  const [item,saveItem] = useLocalStorage('TODOS_V1',[]);
+  
   const [searchValue,setSearchValue] = useState("");
 
   //Proceso que cuenta todos los TODOs y los completados
-  const totalTodos=todos.length;
-  const completedTodos = todos.filter((todo)=>!!todo.completed).length;
+  const totalTodos=item.length;
+  const completedTodos = item.filter((todo)=>!!todo.completed).length;
 
 
   //Proceso que busca los TODOs y los añade en el array de buscados si el input
   //de busqueda cambio caso contrario añade el array completo
   let searchedTodos = [];
   if(!searchValue.length>0){
-    searchedTodos=todos;
+    searchedTodos=item;
   }else{
-    searchedTodos = todos.filter(todo => {
+    searchedTodos = item.filter(todo => {
       const todoText = todo.text.toLowerCase();
       const searchText = searchValue.toLowerCase();
       return todoText.includes(searchText);
     });
   }
-
-  const saveTodos = (newTodos) => {
-    const stringiedTodos=JSON.stringify(newTodos);
-    localStorage.setItem("TODOS_V1",stringiedTodos);
-    setTodos(newTodos);
-  }
-
+  
   //Funcion que completa la TODO seleccionada
   const completeTodo = (text) => {
-    const todoIndex= todos.findIndex(todo => todo.text===text);
-    const newTodos=[...todos];
+    const todoIndex= item.findIndex(todo => todo.text===text);
+    const newTodos=[...item];
     newTodos[todoIndex].completed=true;
-    saveTodos(newTodos);
+    saveItem(newTodos);
   };
 
   //Funcion que elimina la TODO seleccionada
   const deleteTodo = (text) => {
-    const todoIndex= todos.findIndex(todo => todo.text===text);
-    const newTodos=[...todos];
+    const todoIndex= item.findIndex(todo => todo.text===text);
+    const newTodos=[...item];
     newTodos.splice(todoIndex,1);
-    saveTodos(newTodos);
+    saveItem(newTodos);
   };
 
   return (
