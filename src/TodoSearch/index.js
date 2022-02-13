@@ -22,10 +22,10 @@ function TodoSearch({searchValue,setSearchValue}){
     );
 }
 
-//Obligatorio la recepcion de propiedade al invocar el componente
+/* //Obligatorio la recepcion de propiedade al invocar el componente
 TodoSearch.propTypes = {
     searchValue: PropTypes.string,
     setSearchValue: PropTypes.func.isRequired,
-}
+} */
 
 export {TodoSearch};

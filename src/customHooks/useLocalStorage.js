@@ -17,7 +17,6 @@ function useLocalStorage (itemName,initialValue){
     useEffect(()=>{
         setTimeout(()=>{
             try {
-                const s=7/0;
                 //Traeremos a los elementos del localStorage
                 const localStorageItem=localStorage.getItem(itemName);
                 let parsedItem;
